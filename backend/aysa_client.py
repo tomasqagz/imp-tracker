@@ -7,11 +7,20 @@ urllib3.disable_warnings()
 PORTAL_URL = "https://portal.web.aysa.com.ar/index.html"
 
 
-def _parse_saldo(raw: str) -> float | None:
-    """Convierte '$    1145790.03' → 1145790.03"""
+def _parse_amount(raw: str) -> float | None:
+    """Convierte '$    1145790.03' o '  150839.45' → 1145790.03"""
     try:
         return float(re.sub(r"[^\d.]", "", raw))
     except (ValueError, TypeError):
+        return None
+
+
+def _parse_aysa_date(raw: str) -> str | None:
+    """Convierte '17.03.2026' → '17/03/2026'"""
+    try:
+        d, m, y = raw.strip().split(".")
+        return f"{d}/{m}/{y}"
+    except Exception:
         return None
 
 
@@ -100,7 +109,20 @@ class AysaClient:
                 exports = self._deuda.get("EXPORTS", {})
                 partner = exports.get("E_PARTNER", {})
                 saldo_raw = partner.get("ZZSALDO", "")
-                account["balance"] = _parse_saldo(saldo_raw)
+                account["balance"] = _parse_amount(saldo_raw)
+
+                # Última factura: el item más reciente de T_DET_XBLNR
+                items = self._deuda.get("TABLES", {}).get("T_DET_XBLNR", [])
+                if items:
+                    def _sort_key(x):
+                        parts = x.get("BLDAT", "00.00.0000").split(".")
+                        return (parts[2], parts[1], parts[0])  # YYYY, MM, DD
+                    last = max(items, key=_sort_key)
+                    account["last_bill"] = {
+                        "amount": _parse_amount(last.get("ZZTOT_GRAL", "")),
+                        "due_date": _parse_aysa_date(last.get("FAEDN", "")),
+                        "concept": last.get("OPTXT", ""),
+                    }
                 account["estado"] = "ACTIVO"
                 account["mensaje"] = exports.get("PE_MSJ_USR") or exports.get("M_TEXTO", "")
 

@@ -48,6 +48,28 @@ class WidgergyClient:
         data = resp.json()
         return data if isinstance(data, list) else [data]
 
+    def get_last_bill(self, account_id: int | str) -> dict:
+        """Obtiene la última factura via job async."""
+        resp = requests.get(
+            f"{PORTAL_BASE}/api/v1/accounts/{account_id}/bills/last",
+            headers=self._headers,
+        )
+        if not resp.ok:
+            raise RuntimeError(f"Error al crear job de última factura ({resp.status_code}): {resp.text}")
+
+        job_url = resp.json()["url"]
+
+        for _ in range(20):
+            time.sleep(2)
+            r = requests.get(job_url, headers=self._headers)
+            r.raise_for_status()
+            result = r.json()
+            if isinstance(result, dict) and result.get("status") in PENDING_STATUSES:
+                continue
+            return result
+
+        raise TimeoutError("El job de última factura no terminó en el tiempo esperado.")
+
     def get_balance_async(self, account_id: int | str) -> list[dict]:
         """
         Obtiene el saldo via job async (usado por Edenor y similares).
