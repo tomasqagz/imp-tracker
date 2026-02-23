@@ -26,7 +26,17 @@ def get_widergy_balance(client: WidgergyClient, account: dict, strategy: str):
     return account.get("balance")
 
 
-def print_account(service_name: str, account: dict, balance):
+def format_date(iso: str | None) -> str:
+    """Convierte '2026-03-18T00:00:00.000-03:00' → '18/03/2026'"""
+    if not iso:
+        return "N/A"
+    try:
+        return iso[:10].split("-")[2] + "/" + iso[:10].split("-")[1] + "/" + iso[:10].split("-")[0]
+    except Exception:
+        return iso
+
+
+def print_account(service_name: str, account: dict, balance, bill: dict | None = None):
     separator = "=" * 52
     label = "SALDO A FAVOR" if balance is not None and balance < 0 else "SALDO DEUDOR "
     print(f"\n{separator}")
@@ -39,6 +49,8 @@ def print_account(service_name: str, account: dict, balance):
     print(f"  Estado        : {account.get('status_label', account.get('status', 'N/A'))}")
     print(separator)
     print(f"  {label}: {format_currency(abs(balance) if balance is not None else None)}")
+    if bill:
+        print(f"  Últ. factura  : {format_currency(bill.get('amount'))}  |  Vence: {format_date(bill.get('due_date') or bill.get('first_expiration_on'))}")
     print(separator)
 
 
@@ -53,7 +65,8 @@ def fetch_widergy(service: dict):
     client.login()
     for account in client.get_accounts():
         balance = get_widergy_balance(client, account, strategy)
-        print_account(name, account, balance)
+        bill = client.get_last_bill(account["id"])
+        print_account(name, account, balance, bill)
 
 
 # ── Aysa ─────────────────────────────────────────────────────────────────────
@@ -61,6 +74,7 @@ def fetch_widergy(service: dict):
 def print_aysa_account(account: dict):
     separator = "=" * 52
     balance = account.get("balance")
+    bill = account.get("last_bill")
     label = "SALDO A FAVOR" if balance is not None and balance < 0 else "SALDO DEUDOR "
     print(f"\n{separator}")
     print(f"  [Aysa] CONTRATO #{account.get('contrato', 'N/A')}")
@@ -76,6 +90,8 @@ def print_aysa_account(account: dict):
         print(f"  Aviso         : {account.get('mensaje')}")
     print(separator)
     print(f"  {label}: {format_currency(abs(balance) if balance is not None else None)}")
+    if bill:
+        print(f"  Últ. factura  : {format_currency(bill.get('amount'))}  |  Vence: {bill.get('due_date', 'N/A')}")
     print(separator)
 
 
