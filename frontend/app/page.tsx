@@ -163,7 +163,7 @@ export default function Home() {
             href="/split"
             className="px-4 py-2 rounded-xl border border-gray-600 text-gray-300 text-sm font-semibold hover:bg-gray-800 transition-colors"
           >
-            División de gastos
+            Pagos
           </Link>
           <button
             onClick={refreshAll}
@@ -208,10 +208,10 @@ export default function Home() {
           {(split.services_balance > 0 || split.monthly_total > 0) && (
             <div className="flex gap-4 text-xs text-gray-500 mb-4">
               {split.services_balance > 0 && (
-                <span>Servicios: <span className="font-medium text-gray-300">{formatCurrency(split.services_balance)}</span></span>
+                <span>Deuda actual: <span className="font-medium text-gray-300">{formatCurrency(split.services_balance)}</span></span>
               )}
               {split.monthly_total > 0 && (
-                <span>Facturas: <span className="font-medium text-gray-300">{formatCurrency(split.monthly_total)}</span></span>
+                <span>Facturas pagas: <span className="font-medium text-gray-300">{formatCurrency(split.monthly_total)}</span></span>
               )}
             </div>
           )}

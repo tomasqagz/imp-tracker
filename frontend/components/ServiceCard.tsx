@@ -2,6 +2,8 @@
 
 import { ServiceData } from "@/lib/api";
 
+const SERVICE_LABELS: Record<string, string> = { Aysa: "Agua", Edenor: "Luz", Naturgy: "Gas" };
+
 const SERVICE_COLORS: Record<string, { bg: string; border: string; dot: string }> = {
   Naturgy: {
     bg: "bg-gray-900",
@@ -75,6 +77,9 @@ export default function ServiceCard({ data, loading, updatedAt, onRefresh }: Pro
         <div className="flex items-center gap-2">
           <span className={`w-3 h-3 rounded-full ${colors.dot}`} />
           <span className="font-bold text-lg text-gray-100">{name}</span>
+          {SERVICE_LABELS[name] && (
+            <span className="text-sm text-gray-500">({SERVICE_LABELS[name]})</span>
+          )}
         </div>
         {data?.status === "ok" && data.details?.status_label && (
           <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-green-900 text-green-400">

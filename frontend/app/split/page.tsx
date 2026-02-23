@@ -95,15 +95,7 @@ export default function SplitPage() {
           <Link href="/" className="text-sm text-gray-500 hover:text-gray-300 transition-colors mb-1 inline-block">
             ← Servicios
           </Link>
-          <h1 className="text-2xl font-bold text-gray-100">División de gastos</h1>
-          {split && split.total_balance > 0 && (
-            <p className="text-sm text-gray-500 mt-0.5">
-              Total a dividir:{" "}
-              <span className="font-semibold text-gray-300">
-                {new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS" }).format(split.total_balance)}
-              </span>
-            </p>
-          )}
+          <h1 className="text-2xl font-bold text-gray-100">Pagos</h1>
         </div>
       </div>
 

@@ -46,6 +46,17 @@ export default function MonthlyTable({ onUpdate }: { onUpdate?: () => void }) {
     const map: Record<string, MonthlyPayment> = {};
     data.forEach((e) => { map[entryKey(e.year, e.month, e.service)] = e; });
     setEntries(map);
+    return data.length;
+  }, []);
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    load(currentYear).then((count) => {
+      if (count === 0 && currentYear > TAB_YEARS[0]) {
+        setYear(TAB_YEARS[0]);
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { load(year); }, [year, load]);
