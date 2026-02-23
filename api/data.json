@@ -1,0 +1,167 @@
+{
+  "people": [
+    {
+      "id": "1194fe93-1fe1-474c-a240-07ddcd7632e2",
+      "name": "Hugo"
+    },
+    {
+      "id": "787294a9-2c99-497d-856e-1e6d191dcdd6",
+      "name": "Sandra"
+    },
+    {
+      "id": "76f00f93-ee5b-4053-8e90-f21b67e5624a",
+      "name": "Yo"
+    }
+  ],
+  "monthly_payments": [
+    {
+      "id": "2c767ec0-3f6e-4217-8b8a-fc6e31ee33ba",
+      "year": 2025,
+      "month": 1,
+      "service": "Aysa",
+      "amount": 92700.0
+    },
+    {
+      "id": "a97b2206-5232-4345-971e-9117d12b31f9",
+      "year": 2025,
+      "month": 2,
+      "service": "Edenor",
+      "amount": 38800.0
+    },
+    {
+      "id": "b31e8cce-bc43-43e2-85a3-481d2115c629",
+      "year": 2025,
+      "month": 3,
+      "service": "Edenor",
+      "amount": 38765.0
+    },
+    {
+      "id": "983d9acb-bb69-499a-a4f7-51ac4a85ccf1",
+      "year": 2025,
+      "month": 4,
+      "service": "Edenor",
+      "amount": 38732.0
+    },
+    {
+      "id": "b0b253ee-1ccf-43d0-83f7-0e2d7c1898b6",
+      "year": 2025,
+      "month": 5,
+      "service": "Aysa",
+      "amount": 390000.0
+    },
+    {
+      "id": "5e80efbc-face-4545-968b-991ba087d01c",
+      "year": 2025,
+      "month": 5,
+      "service": "Edenor",
+      "amount": 40600.0
+    },
+    {
+      "id": "ae50ec4a-8434-4a7f-9c81-de92d8241ec9",
+      "year": 2025,
+      "month": 5,
+      "service": "Naturgy",
+      "amount": 30400.0
+    },
+    {
+      "id": "c404550b-c04c-42dc-b456-e42587faa425",
+      "year": 2025,
+      "month": 6,
+      "service": "Edenor",
+      "amount": 18261.0
+    },
+    {
+      "id": "131b2cfd-344f-4520-b100-6acf6d478a55",
+      "year": 2025,
+      "month": 7,
+      "service": "Edenor",
+      "amount": 18330.0
+    },
+    {
+      "id": "06e11a1e-eff4-4f4b-b424-165014dcc093",
+      "year": 2025,
+      "month": 8,
+      "service": "Edenor",
+      "amount": 19624.0
+    },
+    {
+      "id": "67a26431-a187-492d-93f8-6e848d29d4a1",
+      "year": 2025,
+      "month": 8,
+      "service": "Naturgy",
+      "amount": 49997.0
+    },
+    {
+      "id": "08fb68b6-3b12-40fe-ba70-4cb1f09497a1",
+      "year": 2025,
+      "month": 8,
+      "service": "Aysa",
+      "amount": 86677.0
+    },
+    {
+      "id": "8667c97a-29dd-427c-8bd8-84ccfa1c5b88",
+      "year": 2025,
+      "month": 9,
+      "service": "Edenor",
+      "amount": 19019.0
+    },
+    {
+      "id": "ca0e806f-b4f6-42e7-bf8e-cdeab05dca80",
+      "year": 2025,
+      "month": 10,
+      "service": "Naturgy",
+      "amount": 100000.0
+    },
+    {
+      "id": "7639dc6b-a473-411f-a480-557bebc53053",
+      "year": 2025,
+      "month": 11,
+      "service": "Edenor",
+      "amount": 50516.0
+    }
+  ],
+  "payments": [
+    {
+      "id": "f5f4d257-6712-4eb3-a1a8-06f1df8a1308",
+      "person_id": "1194fe93-1fe1-474c-a240-07ddcd7632e2",
+      "amount": 70000.0,
+      "date": "2025-03-19",
+      "note": ""
+    },
+    {
+      "id": "a61b8ff5-486e-4709-81a1-5bafafb878f0",
+      "person_id": "1194fe93-1fe1-474c-a240-07ddcd7632e2",
+      "amount": 100000.0,
+      "date": "2025-07-23",
+      "note": ""
+    },
+    {
+      "id": "39dcc2b9-ef2b-4669-b89c-d6dba67b1337",
+      "person_id": "1194fe93-1fe1-474c-a240-07ddcd7632e2",
+      "amount": 150000.0,
+      "date": "2025-10-22",
+      "note": ""
+    },
+    {
+      "id": "4c5edc1b-e788-4cc1-b1c4-db482b44adcc",
+      "person_id": "787294a9-2c99-497d-856e-1e6d191dcdd6",
+      "amount": 150000.0,
+      "date": "2025-07-09",
+      "note": ""
+    },
+    {
+      "id": "c2b12288-23d5-4411-9d0f-ae5560793b0a",
+      "person_id": "787294a9-2c99-497d-856e-1e6d191dcdd6",
+      "amount": 150000.0,
+      "date": "2025-09-02",
+      "note": ""
+    },
+    {
+      "id": "6880f044-a3e6-4ce5-a627-2f7981d5eb4b",
+      "person_id": "76f00f93-ee5b-4053-8e90-f21b67e5624a",
+      "amount": 412000.0,
+      "date": "2026-02-23",
+      "note": "facturas pagas"
+    }
+  ]
+}
